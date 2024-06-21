@@ -1,5 +1,5 @@
 from Accounts import Account
-import Transaction
+import Transactions.Transaction as Transaction
 
 class Client:
     def __init__(self, address, accounts) -> None:
