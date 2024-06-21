@@ -1,4 +1,4 @@
-import Transaction
+from Transactions import Transaction
 
 class Withdraw(Transaction):
     def __init__(self, value):

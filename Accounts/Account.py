@@ -1,4 +1,5 @@
-import Client
+from Users import Client
+from Users import PhysicalPerson
 
 class Account:
     def __init__(self, balance, number, client, agency, statement) -> None:
@@ -7,7 +8,6 @@ class Account:
         self.__agency = agency
         self.__client = client
         self.__statement = statement
-        pass
     
     @property
     def balance(self):
@@ -23,7 +23,6 @@ class Account:
         else:
             self.__balance = __balance - __value
             return True
-
     
     @balance.setter
     def deposit(self, value) -> bool:
@@ -32,6 +31,5 @@ class Account:
         self.__balance = __balance + __value
         return True
 
-    def create_account(self, client, number) -> Client:
-        
-        pass
+    def create_account(self, client, number):
+        return Account(0, number=number, client=client, agency='0001', statement=None)

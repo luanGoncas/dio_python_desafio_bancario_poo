@@ -1,4 +1,4 @@
-import Account
+from Accounts import Account
 
 class CurrentAccount(Account):
     def __init__(self, balance, number, client, agency, statement, limit, withdraw_limit):

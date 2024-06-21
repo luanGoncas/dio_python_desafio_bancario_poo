@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-import Account
+from Accounts import Account
 
 class Transaction(ABC):
 
