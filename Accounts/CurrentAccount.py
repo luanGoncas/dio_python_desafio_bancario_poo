@@ -1,7 +1,10 @@
 from Accounts import Account
+from Users import Client
+from Transactions import Statement
 
 class CurrentAccount(Account):
-    def __init__(self, balance, number, client, agency, statement, limit, withdraw_limit):
+    def __init__(self, balance: float, number: int, client: Client, agency: str,
+                 statement: Statement, limit: float, withdraw_limit: int):
         super().__init__(balance, number, client, agency, statement)
         self.__limit = limit
         self.__withdraw_limit = withdraw_limit

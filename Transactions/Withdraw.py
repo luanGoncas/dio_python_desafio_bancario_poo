@@ -1,7 +1,7 @@
 from Transactions import Transaction
 
 class Withdraw(Transaction):
-    def __init__(self, value):
+    def __init__(self, value: float):
         super().__init()
         self.__value = value
     

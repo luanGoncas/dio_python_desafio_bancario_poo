@@ -1,7 +1,7 @@
 import Transaction
 
 class Deposit(Transaction):
-    def __init__(self, value):
+    def __init__(self, value: float):
         super().__init()
         self.__value = value
     

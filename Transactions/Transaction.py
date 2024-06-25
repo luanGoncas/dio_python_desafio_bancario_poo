@@ -4,5 +4,5 @@ from Accounts import Account
 class Transaction(ABC):
 
     @abstractmethod
-    def register(account):
+    def register(account: Account):
         pass
