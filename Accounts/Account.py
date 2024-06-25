@@ -1,5 +1,4 @@
 from Users import Client
-# from Users import PhysicalPerson
 from Transactions import Statement
 
 class Account:
@@ -33,5 +32,7 @@ class Account:
         self.__balance = __balance + __value
         return True
 
-    def create_account(self, client: Client, number: int):
+    @classmethod
+    def create_account(cls, client: Client, number: int):
+        
         return Account(0, number=number, client=client, agency='0001', statement=None)
