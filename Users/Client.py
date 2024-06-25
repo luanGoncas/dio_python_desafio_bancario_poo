@@ -20,5 +20,6 @@ class Client:
     @accounts.setter
     def add_account(self, account: Account):
         __accounts = self.__accounts or []
-        __account = account or None
+        __account = Account.create_account(account) or None
+
         self.__accounts.append(__account)

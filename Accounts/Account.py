@@ -14,6 +14,14 @@ class Account:
     def balance(self):
         return self.__balance or 0
     
+    @classmethod
+    def create_account(cls, client: Client, number: int):
+        __balance = 0
+        __agency = '0001'
+        __statement = None
+
+        return cls(__balance, number, client, __agency, __statement)
+    
     @balance.setter
     def withdraw(self, value: float) -> bool:
         __balance = self.__balance or 0
@@ -31,8 +39,3 @@ class Account:
         __value = value or 0
         self.__balance = __balance + __value
         return True
-
-    @classmethod
-    def create_account(cls, client: Client, number: int):
-        
-        return Account(0, number=number, client=client, agency='0001', statement=None)
