@@ -11,13 +11,12 @@ class Statement:
 
     @transactions.setter
     def add_transaction(self, transaction: Transaction):
-        __transactions = self.__transactions or []
         __transaction = transaction or None
 
         self.__transactions.append(
             {
-                'Type': transaction.__class__.name__,
-                'Value': transaction.value,
+                'Type': __transaction.__class__.name__,
+                'Value': __transaction.value,
                 'Data': datetime.now().strftime("%d-%m-%Y %H:%M:%s")
             }
         )
