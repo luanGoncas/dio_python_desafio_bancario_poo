@@ -15,7 +15,8 @@ class Client:
     def accounts(self):
         return self.__accounts or []
 
-    def make_transaction(account: Account, transaction: Transaction): pass
+    def make_transaction(self, account: Account, transaction: Transaction):
+        transaction.register(account)
 
     @accounts.setter
     def add_account(self, account: Account):
