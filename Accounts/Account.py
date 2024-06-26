@@ -14,6 +14,18 @@ class Account:
     def balance(self):
         return self.__balance or 0
     
+    @property
+    def number(self):
+        return self.__number or 0
+    
+    @property
+    def agency(self):
+        return self.__agency or ''
+    
+    @property
+    def client(self):
+        return self.__client or None
+    
     @classmethod
     def create_account(cls, client: Client, number: int):
         __balance = 0
@@ -27,7 +39,7 @@ class Account:
         __balance = self.__balance or 0
         __value = value or 0
         
-        if __balance - __value < 0:
+        if __balance - __value < 0 or __value < 0:
             return False
         else:
             self.__balance = __balance - __value
