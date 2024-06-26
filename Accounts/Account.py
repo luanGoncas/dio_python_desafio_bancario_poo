@@ -8,7 +8,7 @@ class Account:
         self.__number = number
         self.__agency = agency
         self.__client = client
-        self.__statement = statement
+        self.__statement = Statement()
     
     @property
     def balance(self):
@@ -25,6 +25,10 @@ class Account:
     @property
     def client(self):
         return self.__client or None
+    
+    @property
+    def statement(self):
+        return self.__statement or None
     
     @classmethod
     def create_account(cls, client: Client, number: int):

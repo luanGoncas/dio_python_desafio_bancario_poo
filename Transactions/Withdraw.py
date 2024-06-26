@@ -8,8 +8,8 @@ class Withdraw(Transaction):
     
     @property
     def value(self):
-        return f'WITHDRAW: R$ {self.__value}' or 0
+        return self.__value or 0
     
     def register(self, account: Account):
-        account.__statement += self.value
-        account.__statement += '\n'
+        if account.withdraw(self.__value):
+            account.statement.add_transaction(self)
