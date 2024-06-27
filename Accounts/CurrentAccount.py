@@ -1,6 +1,7 @@
-from Accounts import Account
-from Users import Client
-from Transactions import Statement, Withdraw
+from Accounts.Account import Account
+from Users.Client import Client
+from Transactions.Statement import Statement
+from Transactions.Withdraw import Withdraw
 
 class CurrentAccount(Account):
     def __init__(self, balance: float, number: int, client: Client, agency: str,

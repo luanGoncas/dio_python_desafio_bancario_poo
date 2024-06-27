@@ -1,5 +1,5 @@
-from Transactions import Transaction
-from Accounts import Account
+from Transactions.Transaction import Transaction
+from Accounts.Account import Account
 
 class Withdraw(Transaction):
     def __init__(self, value: float):

@@ -1,4 +1,4 @@
-import Client
+from Users.Client import Client
 import datetime
 
 class PhysicalPerson(Client):

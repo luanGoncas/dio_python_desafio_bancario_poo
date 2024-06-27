@@ -1,4 +1,4 @@
-import Transaction
+from Transactions.Transaction import Transaction
 from Accounts import Account
 
 class Deposit(Transaction):
