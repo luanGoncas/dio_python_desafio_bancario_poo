@@ -32,11 +32,21 @@ def create_current_account(current_account_client: Client,
         client_number: int) -> CurrentAccount:
     try:
         return CurrentAccount.create_account(client=current_account_client,
-                                             number=client_number)
+                                                    number=client_number)
     except Exception as e:
         return f'Invalid Current Account Creation! {str(e)}'
 
-new_person = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
+new_client = create_client('Avenida Paulista')
+new_person_client = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
+new_account = create_account(new_client, 1)
+new_account2 = create_account(new_person_client, 2)
+new_current_account = create_current_account(new_person_client, 3)
+
+print('New Client:', new_client)
+print('New Person Client:', new_person_client)
+print('New Account:', new_account)
+print('New Account 2:', new_account2)
+print('New Current Account:', new_current_account)
 
 # MENU = """
 #         [1] Deposit

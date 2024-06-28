@@ -54,3 +54,6 @@ class Account:
         __value = value or 0
         self.__balance = __balance + __value
         return True
+    
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}: {', '.join([f'{key} = {value}' for key, value in self.__dict__.items()])}'

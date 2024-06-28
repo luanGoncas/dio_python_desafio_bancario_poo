@@ -10,6 +10,16 @@ class CurrentAccount(Account):
         self.__limit = limit
         self.__withdraw_limit = withdraw_limit
     
+    @ classmethod
+    def create_account(cls, client, number: int):
+        __balance = 0
+        __agency = '0001'
+        __statement = None
+        __limit = 500
+        __withdraw_limit = 3
+
+        return cls(__balance, number, client, __agency, __statement, __limit, __withdraw_limit)
+
     def withdraw(self, value: float) -> bool:
         __value = value or 0
         __limit = self.__limit or 0
