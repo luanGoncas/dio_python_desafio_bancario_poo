@@ -1,4 +1,3 @@
-# from Users.Client import Client
 from Transactions.Statement import Statement
 
 class Account:
