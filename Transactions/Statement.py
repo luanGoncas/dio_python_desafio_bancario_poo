@@ -20,3 +20,6 @@ class Statement:
                 'Data': datetime.now().strftime("%d-%m-%Y %H:%M:%s")
             }
         )
+    
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}: {', '.join([f'{key} = {value}' for key, value in self.__dict__.items()])}'

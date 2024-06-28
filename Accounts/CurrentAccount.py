@@ -14,7 +14,7 @@ class CurrentAccount(Account):
     def create_account(cls, client, number: int):
         __balance = 0
         __agency = '0001'
-        __statement = None
+        __statement = Statement()
         __limit = 500
         __withdraw_limit = 3
 
