@@ -1,5 +1,5 @@
-from Accounts import Account
-from Transactions import Transaction
+from Accounts.Account import Account
+from Transactions.Transaction import Transaction
 
 class Client:
     def __init__(self, address: str, accounts: list) -> None:
@@ -23,3 +23,6 @@ class Client:
         __account = Account.create_account(account) or None
 
         self.__accounts.append(__account)
+    
+    def __str__(self) -> str:
+        return f'{self.__class__.__name__}: {', '.join([f'{key} = {value}' for key, value in self.__dict__.items()])}'

@@ -1,8 +1,8 @@
-from Users import Client
-from Transactions import Statement
+# from Users.Client import Client
+from Transactions.Statement import Statement
 
 class Account:
-    def __init__(self, balance: float, number: int, client: Client, agency: str, 
+    def __init__(self, balance: float, number: int, client, agency: str, 
                  statement: Statement) -> None:
         self.__balance = balance
         self.__number = number
@@ -31,7 +31,7 @@ class Account:
         return self.__statement or None
     
     @classmethod
-    def create_account(cls, client: Client, number: int):
+    def create_account(cls, client, number: int):
         __balance = 0
         __agency = '0001'
         __statement = None
