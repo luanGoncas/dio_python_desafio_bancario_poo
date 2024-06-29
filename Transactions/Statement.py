@@ -1,4 +1,4 @@
-from Transactions import Transaction
+from Transactions.Transaction import Transaction
 import datetime
 
 class Statement:

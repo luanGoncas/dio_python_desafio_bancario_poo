@@ -1,5 +1,4 @@
 from abc import ABC, abstractmethod
-from Accounts import Account
 
 class Transaction(ABC):
     @property
@@ -7,5 +6,5 @@ class Transaction(ABC):
     def value(self): pass
 
     @abstractmethod
-    def register(account: Account):
+    def register(account):
         pass

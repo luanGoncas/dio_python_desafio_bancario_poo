@@ -1,5 +1,5 @@
 from Transactions.Transaction import Transaction
-from Accounts import Account
+from Accounts.Account import Account
 
 class Deposit(Transaction):
     def __init__(self, value: float):
