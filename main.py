@@ -36,30 +36,33 @@ def create_current_account(current_account_client: Client,
     except Exception as e:
         return f'Invalid Current Account Creation! {str(e)}'
 
-new_client = create_client('Avenida Paulista')
-new_person_client = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
-new_account = create_account(new_client, 1)
-new_account2 = create_account(new_person_client, 2)
-new_current_account = create_current_account(new_person_client, 3)
+def menu():
+    return """
+            [1] Deposit
+            [2] Withdraw
+            [3] Statement
+            [4] Create Client
+            [5] Create Current Account
+            [6] List Clients
+            [7] List Current Accounts
+            [8] Quit
 
-print('New Client:', new_client)
-print('New Person Client:', new_person_client)
-print('New Account:', new_account)
-print('New Account 2:', new_account2)
-print('New Current Account:', new_current_account)
+    => """
+# new_client = create_client('Avenida Paulista')
+# new_person_client = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
+# new_account = create_account(new_client, 1)
+# new_account2 = create_account(new_person_client, 2)
+# new_current_account = create_current_account(new_person_client, 3)
 
-# MENU = """
-#         [1] Deposit
-#         [2] Withdraw
-#         [3] Statement
-#         [4] Create Client
-#         [5] Create Current Account
-#         [6] List Clients
-#         [7] List Current Accounts
-#         [8] Quit
+# print('New Client:', new_client)
+# print('New Person Client:', new_person_client)
+# print('New Account:', new_account)
+# print('New Account 2:', new_account2)
+# print('New Current Account:', new_current_account)
 
-#     => """
+def main():
+    clients = []
+    accounts = []
 
-# def main():
-#     clients = []
-#     accounts = []
+    while True:
+        option = menu()
