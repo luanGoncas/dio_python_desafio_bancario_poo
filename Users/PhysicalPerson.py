@@ -7,3 +7,15 @@ class PhysicalPerson(Client):
         self.__cpf = cpf
         self.__name = name
         self.__birthdate = birthdate
+    
+    @property
+    def cpf(self):
+        return self.__cpf or ''
+    
+    @property
+    def name(self):
+        return self.__name or ''
+    
+    @property
+    def birthdate(self):
+        return self.__birthdate or ''
