@@ -18,11 +18,10 @@ class Client:
     def make_transaction(self, account: Account, transaction: Transaction):
         transaction.register(account)
 
-    @accounts.setter
     def add_account(self, account: Account):
-        __account = Account.create_account(account) or None
+        # __account = Account.create_account(account) or None
 
-        self.__accounts.append(__account)
+        self.__accounts.append(account)
     
     def __str__(self) -> str:
         return f'{self.__class__.__name__}: {', '.join([f'{key} = {value}' for key, value in self.__dict__.items()])}'

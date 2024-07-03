@@ -25,31 +25,47 @@ def menu() -> input:
 
     return input(textwrap.dedent(menu))
 
-# def create_client(client_address: str) -> Client:
-#     try:
-#         return Client(address=client_address, accounts=[])
-#     except Exception as e:
-#         return f'Invalid Client Creation! str{e}'
-
-def create_physical_person_client(client_address: str, client_cpf: str, 
-                                  client_name: str, client_birthdate: datetime) -> PhysicalPerson:
+def create_physical_person_client(clients_list: list) -> str:
     try:
-        return PhysicalPerson(address=client_address, accounts=[], cpf=client_cpf,
-                              name=client_name, birthdate=client_birthdate)
+        client_address = input('Please, inform the new client\'s address: ')
+        client_cpf = input('Please, inform the new client\'s CPF: ')
+        client_name = input('Please, inform the new client\'s name: ')
+        client_birthdate = input('Please, inform new the client\'s birthdate (dd/mm/yyyy): ')
+
+        new_client = PhysicalPerson(
+            address=client_address, accounts=[],
+            cpf=client_cpf,
+            name=client_name,
+            birthdate=client_birthdate
+        )
+
+        clients_list.append(new_client)
+        return f'New Physical Person Client created! {new_client}'
     except Exception as e:
         return f'Invalid Physical Person Client Creation! {str(e)}'
 
-# def create_account(account_client: Client, client_number: int) -> Account:
-#     try:
-#         return Account.create_account(client=account_client, number=client_number)
-#     except Exception as e:
-#         return f'Invalid Account Creation! {str(e)}'
-
-def create_current_account(current_account_client: Client,
-        client_number: int) -> CurrentAccount:
+def create_current_account(clients_list: list, accounts_list: list):
     try:
-        return CurrentAccount.create_account(client=current_account_client,
-                                                    number=client_number)
+        client_cpf = input('Please, inform the client\'s CPF: ')
+        new_account_client = False
+
+        for client in clients_list:
+            if client.cpf == client_cpf:
+                new_account_client = client
+                
+        if not new_account_client:
+            raise Exception('Client not found!')
+        
+        client_number = len(accounts_list) + 1
+        new_account = CurrentAccount.create_account(
+            client=new_account_client,
+            number=client_number
+        )
+
+        accounts_list.append(new_account)
+        new_account_client.add_account(new_account)
+
+        return f'New Current Account created! {new_account}'
     except Exception as e:
         return f'Invalid Current Account Creation! {str(e)}'
 
@@ -135,16 +151,10 @@ def get_account_statements(clients_list: list) -> list:
     else:
         return [transaction for transaction in statements_account.statement.transactions]
 
-# new_client = create_client('Avenida Paulista')
 # new_person_client = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
-# new_account = create_account(new_client, 1)
-# new_account2 = create_account(new_person_client, 2)
 # new_current_account = create_current_account(new_person_client, 3)
 
-# print('New Client:', new_client)
 # print('\n\nNew Person Client:', new_person_client)
-# print('\n\nNew Account:', new_account)
-# print('\n\nNew Account 2:', new_account2)
 # print('\n\nNew Current Account:', new_current_account)
 
 def main():
@@ -161,14 +171,15 @@ def main():
         elif option == '3':
             get_account_statements(clients)
         elif option == '4':
-            continue
-            # create_physical_person_client()
+            print(create_physical_person_client(clients))
         elif option == '5':
-            continue
-            # create_current_account(clients)
+            print(create_current_account(clients, accounts))
         elif option == '6':
             for client in clients: print(client)
         elif option == '7':
             for account in accounts: print(account)
         elif option == '8':
             break
+
+if __name__ == '__main__':
+    main()
