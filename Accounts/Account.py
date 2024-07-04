@@ -37,10 +37,9 @@ class Account:
 
         return cls(__balance, number, client, __agency, __statement)
     
-    @balance.setter
     def withdraw(self, value: float) -> bool:
-        __balance = self.__balance or 0
-        __value = value or 0
+        __balance = self.__balance or 0.0
+        __value = value or 0.0
         
         if __balance - __value < 0 or __value < 0:
             return False
@@ -48,10 +47,9 @@ class Account:
             self.__balance = __balance - __value
             return True
     
-    @balance.setter
     def deposit(self, value: float) -> bool:
-        __balance = self.__balance or 0
-        __value = value or 0
+        __balance = self.__balance or 0.0
+        __value = value or 0.0
         self.__balance = __balance + __value
         return True
     

@@ -1,5 +1,5 @@
-from Accounts.Account import Account
-from Transactions.Transaction import Transaction
+# from Accounts.Account import Account
+# from Transactions.Transaction import Transaction
 
 class Client:
     def __init__(self, address: str, accounts: list) -> None:
@@ -15,10 +15,10 @@ class Client:
     def accounts(self):
         return self.__accounts or []
 
-    def make_transaction(self, account: Account, transaction: Transaction):
+    def make_transaction(self, account, transaction):
         transaction.register(account)
 
-    def add_account(self, account: Account):
+    def add_account(self, account):
         # __account = Account.create_account(account) or None
 
         self.__accounts.append(account)

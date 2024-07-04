@@ -73,7 +73,7 @@ def create_current_account(clients_list: list, accounts_list: list):
     except Exception as e:
         return f'Invalid Current Account Creation! {str(e)}'
 
-def post_deposit_operation(clients_list: list) -> str:
+def post_deposit_operation(clients_list: list):
     try:
         client_cpf = input('Please, inform the client\'s CPF: ')
         deposit_client = next(

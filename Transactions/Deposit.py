@@ -1,5 +1,4 @@
 from Transactions.Transaction import Transaction
-from Accounts.Account import Account
 
 class Deposit(Transaction):
     def __init__(self, value: float):
@@ -7,8 +6,8 @@ class Deposit(Transaction):
     
     @property
     def value(self):
-        return self.__value or 0
+        return self.__value or 0.0
     
-    def register(self, account: Account):
+    def register(self, account):
         if account.deposit(self.__value):
             account.statement.add_transaction(self)

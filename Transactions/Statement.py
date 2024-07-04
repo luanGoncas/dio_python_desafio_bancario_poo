@@ -1,5 +1,4 @@
-from Transactions.Transaction import Transaction
-import datetime
+from datetime import datetime
 
 class Statement:
     def __init__(self) -> None:
@@ -9,13 +8,12 @@ class Statement:
     def transactions(self):
         return self.__transactions or []
 
-    @transactions.setter
-    def add_transaction(self, transaction: Transaction):
+    def add_transaction(self, transaction):
         __transaction = transaction or None
 
         self.__transactions.append(
             {
-                'Type': __transaction.__class__.name__,
+                'Type': __transaction.__class__.__name__,
                 'Value': __transaction.value,
                 'Data': datetime.now().strftime("%d-%m-%Y %H:%M:%s")
             }
