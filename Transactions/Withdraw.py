@@ -6,7 +6,7 @@ class Withdraw(Transaction):
     
     @property
     def value(self):
-        return self.__value or 0
+        return self.__value or 0.0
     
     def register(self, account):
         if account.withdraw(self.__value):

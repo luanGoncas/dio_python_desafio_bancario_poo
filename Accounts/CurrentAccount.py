@@ -26,8 +26,8 @@ class CurrentAccount(Account):
         __withdraw_limit = self.__withdraw_limit or 0
 
         withdraws_num = len(
-                [transaction for transaction in self.__statement.transactions 
-                    if transaction['type'] == Withdraw.__name__]
+                [transaction for transaction in self.statement.transactions 
+                    if transaction['Type'] == Withdraw.__name__]
         )
         
         if __value > __limit or withdraws_num >= __withdraw_limit:

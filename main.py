@@ -73,7 +73,7 @@ def create_current_account(clients_list: list, accounts_list: list):
     except Exception as e:
         return f'Invalid Current Account Creation! {str(e)}'
 
-def post_deposit_operation(clients_list: list):
+def post_deposit_operation(clients_list: list) -> str:
     try:
         client_cpf = input('Please, inform the client\'s CPF: ')
         deposit_client = next(
@@ -98,40 +98,48 @@ def post_deposit_operation(clients_list: list):
         if not deposit_account:
             return 'Invalid client number informed...'
         else:
-            deposit_value = float(input('Informe the deposit value: '))
+            deposit_value = float(input('Inform the deposit value: '))
             deposit_transaction = Deposit(deposit_value)
             deposit_client.make_transaction(deposit_account, deposit_transaction)
+            return f'Deposit was successful! {deposit_transaction}'
     except Exception as e:
         return f'Invalid Deposit Operation! {str(e)}'
 
-def post_withdraw_operation(clients_list: list) -> None:
-    client_cpf = input('Please, inform the client\'s CPF: ')
-    withdraw_client = next(
-        (client for client in clients_list if client.cpf == client_cpf),
-        False
-    )
-
-    if not withdraw_client:
-        return 'Client not found!'
-    
-    if withdraw_client.accounts == []:
-        return 'The client informed does not have an account associated with.'
-    else:
-        account_number = int(input('Please, inform the account number: '))
-        withdraw_account = next(
-            (account 
-             for account in withdraw_client.accounts
-               if account.number == account_number),
+def post_withdraw_operation(clients_list: list) -> str:
+    try:
+        client_cpf = input('Please, inform the client\'s CPF: ')
+        withdraw_client = next(
+            (client for client in clients_list if client.cpf == client_cpf),
             False
         )
 
-    if not withdraw_account:
-        return 'Invalid client number informed...'
-    else:
-        withdraw_value = float(input('Informe the deposit value: '))
-        withdraw_transaction = Withdraw(withdraw_value)
-        withdraw_client.make_transaction(withdraw_account, withdraw_transaction)
+        if not withdraw_client:
+            raise Exception('Client not found!')
+        
+        if withdraw_client.accounts == []:
+            raise Exception('The client informed does not have an account associated with.')
+        else:
+            account_number = int(input('Please, inform the account number: '))
+            withdraw_account = next(
+                (account 
+                for account in withdraw_client.accounts
+                if account.number == account_number),
+                False
+            )
 
+        if not withdraw_account:
+            return 'Invalid client number informed...'
+        else:
+            withdraw_value = float(input('Inform the withdraw value: '))
+            withdraw_transaction = Withdraw(withdraw_value)
+            if withdraw_account.withdraw(withdraw_value):
+                withdraw_client.make_transaction(withdraw_account, withdraw_transaction)
+                return f'Withdraw was successful! {withdraw_transaction}'
+            else:
+                raise Exception('Insufficient balance, exceeded limit or daily withdraws')
+    except Exception as e:
+        return f'Invalid Withdraw! {str(e)}'
+    
 def get_account_statements(clients_list: list) -> list:
     client_cpf = input('Please, inform the client\'s CPF: ')
     statements_client = next(
@@ -158,12 +166,6 @@ def get_account_statements(clients_list: list) -> list:
     else:
         return [transaction for transaction in statements_account.statement.transactions]
 
-# new_person_client = create_physical_person_client('Avenida Maruipe', '16021242726', 'Luan', '11/04/1995')
-# new_current_account = create_current_account(new_person_client, 3)
-
-# print('\n\nNew Person Client:', new_person_client)
-# print('\n\nNew Current Account:', new_current_account)
-
 def main():
     clients = []
     accounts = []
@@ -174,7 +176,7 @@ def main():
         if option == '1':
             print(post_deposit_operation(clients))
         elif option == '2':
-            post_withdraw_operation(clients)
+            print(post_withdraw_operation(clients))
         elif option == '3':
             get_account_statements(clients)
         elif option == '4':
