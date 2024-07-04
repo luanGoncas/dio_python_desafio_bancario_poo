@@ -6,5 +6,5 @@ class Transaction(ABC):
     def value(self): pass
 
     @abstractmethod
-    def register(account):
+    def register(self, account):
         pass

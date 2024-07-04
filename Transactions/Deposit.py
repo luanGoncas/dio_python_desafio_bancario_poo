@@ -3,7 +3,6 @@ from Accounts.Account import Account
 
 class Deposit(Transaction):
     def __init__(self, value: float):
-        super().__init()
         self.__value = value
     
     @property
