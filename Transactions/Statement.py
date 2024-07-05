@@ -15,7 +15,7 @@ class Statement:
             {
                 'Type': __transaction.__class__.__name__,
                 'Value': __transaction.value,
-                'Data': datetime.now().strftime("%d-%m-%Y %H:%M:%s")
+                'Data': datetime.now().strftime("%d-%m-%Y %H:%M:%S")
             }
         )
     

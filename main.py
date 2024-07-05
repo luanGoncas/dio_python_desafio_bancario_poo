@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime
 import textwrap
 from Accounts.Account import Account
 from Accounts.CurrentAccount import CurrentAccount
@@ -39,11 +39,13 @@ def create_physical_person_client(clients_list: list) -> str:
         client_name = input('Please, inform the new client\'s name: ')
         client_birthdate = input('Please, inform new the client\'s birthdate (dd/mm/yyyy): ')
 
+        valid_client_birthdate = datetime.strptime(client_birthdate, '%d/%m/%Y').date()
+
         new_client = PhysicalPerson(
             address=client_address, accounts=[],
             cpf=client_cpf,
             name=client_name,
-            birthdate=client_birthdate
+            birthdate=valid_client_birthdate
         )
 
         clients_list.append(new_client)
@@ -154,7 +156,7 @@ def post_withdraw_operation(clients_list: list) -> str:
             else:
                 raise Exception('Insufficient balance, exceeded limit or daily withdraws')
     except Exception as e:
-        return f'Invalid Withdraw! {str(e)} | CT: {current_transactions} | PT: {previous_transactions}'
+        return f'Invalid Withdraw! {str(e)}'
     
 def get_account_statements(clients_list: list) -> list:
     client_cpf = input('Please, inform the client\'s CPF: ')
