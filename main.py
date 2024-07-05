@@ -29,7 +29,7 @@ def create_physical_person_client(clients_list: list) -> str:
     try:
         client_cpf = input('Please, inform the new client\'s CPF: ')
         
-        if len(client_cpf) != 11 and not client_cpf.isdecimal():
+        if len(client_cpf) != 11 or not client_cpf.isdecimal():
             raise Exception('Invalid CPF!')
 
         if any(client.cpf == client_cpf for client in clients_list):
@@ -47,7 +47,7 @@ def create_physical_person_client(clients_list: list) -> str:
         )
 
         clients_list.append(new_client)
-        return f'New Physical Person Client created! {new_client}'
+        return f'New Physical Person Client created! {new_client} | Tamanho Client CPF -> {(len(client_cpf))} Type Client CPF -> {type(client_cpf)}'
     except Exception as e:
         return f'Invalid Physical Person Client Creation! {str(e)}'
 
@@ -55,6 +55,9 @@ def create_current_account(clients_list: list, accounts_list: list):
     try:
         client_cpf = input('Please, inform the client\'s CPF: ')
         
+        if len(client_cpf) != 11 or not client_cpf.isdecimal():
+            raise Exception('Invalid CPF!')
+
         new_account_client = next(
             (client for client in clients_list if client.cpf == client_cpf),
             False
@@ -79,6 +82,10 @@ def create_current_account(clients_list: list, accounts_list: list):
 def post_deposit_operation(clients_list: list) -> str:
     try:
         client_cpf = input('Please, inform the client\'s CPF: ')
+        
+        if len(client_cpf) != 11 or not client_cpf.isdecimal():
+            raise Exception('Invalid CPF!')
+
         deposit_client = next(
             (client for client in clients_list if client.cpf == client_cpf),
             False
@@ -111,6 +118,10 @@ def post_deposit_operation(clients_list: list) -> str:
 def post_withdraw_operation(clients_list: list) -> str:
     try:
         client_cpf = input('Please, inform the client\'s CPF: ')
+
+        if len(client_cpf) != 11 or not client_cpf.isdecimal():
+            raise Exception('Invalid CPF!')
+
         withdraw_client = next(
             (client for client in clients_list if client.cpf == client_cpf),
             False
@@ -147,6 +158,10 @@ def post_withdraw_operation(clients_list: list) -> str:
     
 def get_account_statements(clients_list: list) -> list:
     client_cpf = input('Please, inform the client\'s CPF: ')
+
+    if len(client_cpf) != 11 or not client_cpf.isdecimal():
+            raise Exception('Invalid CPF!')
+
     statements_client = next(
         (client for client in clients_list if client.cpf == client_cpf),
         False
@@ -183,7 +198,7 @@ def main():
         elif option == '2':
             print(post_withdraw_operation(clients))
         elif option == '3':
-            get_account_statements(clients)
+            print(get_account_statements(clients))
         elif option == '4':
             print(create_physical_person_client(clients))
         elif option == '5':
