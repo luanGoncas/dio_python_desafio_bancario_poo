@@ -1,12 +1,8 @@
 from datetime import datetime
 import textwrap
-from Accounts.Account import Account
 from Accounts.CurrentAccount import CurrentAccount
 from Transactions.Deposit import Deposit
-from Transactions.Statement import Statement
-from Transactions.Transaction import Transaction
 from Transactions.Withdraw import Withdraw
-from Users.Client import Client
 from Users.PhysicalPerson import PhysicalPerson
 
 def menu() -> input:
