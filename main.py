@@ -130,15 +130,17 @@ def post_withdraw_operation(clients_list: list) -> str:
         if not withdraw_account:
             return 'Invalid client number informed...'
         else:
+            previous_transactions = len(withdraw_account.statement.transactions)
             withdraw_value = float(input('Inform the withdraw value: '))
             withdraw_transaction = Withdraw(withdraw_value)
-            if withdraw_account.withdraw(withdraw_value):
-                withdraw_client.make_transaction(withdraw_account, withdraw_transaction)
+            withdraw_client.make_transaction(withdraw_account, withdraw_transaction)
+            current_transactions = len(withdraw_account.statement.transactions)
+            if current_transactions > previous_transactions:
                 return f'Withdraw was successful! {withdraw_transaction}'
             else:
                 raise Exception('Insufficient balance, exceeded limit or daily withdraws')
     except Exception as e:
-        return f'Invalid Withdraw! {str(e)}'
+        return f'Invalid Withdraw! {str(e)} | CT: {current_transactions} | PT: {previous_transactions}'
     
 def get_account_statements(clients_list: list) -> list:
     client_cpf = input('Please, inform the client\'s CPF: ')
