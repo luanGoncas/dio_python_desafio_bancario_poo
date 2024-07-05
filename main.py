@@ -29,6 +29,9 @@ def create_physical_person_client(clients_list: list) -> str:
     try:
         client_cpf = input('Please, inform the new client\'s CPF: ')
         
+        if len(client_cpf) != 11 and not client_cpf.isdecimal():
+            raise Exception('Invalid CPF!')
+
         if any(client.cpf == client_cpf for client in clients_list):
             raise Exception('Client already registered!')
 
@@ -54,7 +57,7 @@ def create_current_account(clients_list: list, accounts_list: list):
         
         new_account_client = next(
             (client for client in clients_list if client.cpf == client_cpf),
-            None
+            False
         )
                 
         if not new_account_client:
