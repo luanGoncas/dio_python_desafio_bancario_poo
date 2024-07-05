@@ -21,7 +21,7 @@ class Statement:
     
     def __str__(self) -> str:
         return f'{self.__class__.__name__}: {
-            ', '.join(
+            ' | '.join(
                 [f'{key} = {value}' for key, value in self.__dict__.items()]
             )
         }'

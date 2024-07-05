@@ -19,13 +19,11 @@ class Client:
         transaction.register(account)
 
     def add_account(self, account):
-        # __account = Account.create_account(account) or None
-
         self.__accounts.append(account)
     
     def __str__(self) -> str:
         return f'{self.__class__.__name__}: {
-            ', '.join(
+            ' | '.join(
                 [f'{key} = {value}' for key, value in self.__dict__.items()]
             )
         }'

@@ -12,9 +12,9 @@ from Users.PhysicalPerson import PhysicalPerson
 def menu() -> input:
     menu = """
 
-    [1] Deposit
-    [2] Withdraw
-    [3] Statement
+    [1] Current Account Deposit
+    [2] Current Account Withdraw
+    [3] Current Account Statement
     [4] Create Client
     [5] Create Current Account
     [6] List Clients
@@ -47,7 +47,7 @@ def create_physical_person_client(clients_list: list) -> str:
         )
 
         clients_list.append(new_client)
-        return f'New Physical Person Client created! {new_client} | Tamanho Client CPF -> {(len(client_cpf))} Type Client CPF -> {type(client_cpf)}'
+        return f'New Physical Person Client created! {new_client}'
     except Exception as e:
         return f'Invalid Physical Person Client Creation! {str(e)}'
 
